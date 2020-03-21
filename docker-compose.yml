@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  save-the-spire:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: save-the-spire
+    labels:
+        - "traefik.enable=true"
+        - "traefik.backend=sts"
+        - "traefik.frontend.rule=Host:sts.$MyDomain"
+        - "traefik.port=80"
+        - "traefik.docker.network=web"
+        - "com.centurylinklabs.watchtower.enable=false"
